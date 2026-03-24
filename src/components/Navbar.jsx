@@ -50,7 +50,7 @@ const Navbar = () => {
     };
 
     loadGenres();
-  }, []);
+  }, [popularGenres]);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
