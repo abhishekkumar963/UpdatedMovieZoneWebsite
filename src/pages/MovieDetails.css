@@ -1,0 +1,527 @@
+.movie-details-container {
+  min-height: calc(100vh - 70px);
+  position: relative;
+  color: #ffffff;
+}
+
+/* Backdrop */
+.movie-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.backdrop-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 20, 20, 0.8) 0%,
+    rgba(20, 20, 20, 0.95) 50%,
+    rgba(20, 20, 20, 1) 100%
+  );
+}
+
+/* Content */
+.movie-details-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 100px;
+  padding-bottom: 4rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.breadcrumb a {
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  color: #e50914;
+}
+
+.separator {
+  color: #555;
+}
+
+.current {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Movie Details Grid */
+.movie-details-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Poster Section */
+.movie-poster-section {
+  position: sticky;
+  top: 100px;
+}
+
+.movie-poster {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+.favorite-button {
+  width: 100%;
+  background: linear-gradient(135deg, #e50914 0%, #f40612 100%);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(229, 9, 20, 0.3);
+}
+
+.favorite-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(229, 9, 20, 0.4);
+}
+
+.favorite-button.active {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+}
+
+/* Info Section */
+.movie-info-section {
+  max-width: 800px;
+}
+
+.movie-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.movie-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.rating-badge {
+  background: linear-gradient(135deg, #2ed573 0%, #26de81 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.rating-badge.medium {
+  background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+  color: #000;
+}
+
+.rating-badge.low {
+  background: linear-gradient(135deg, #e50914 0%, #f40612 100%);
+}
+
+.release-year,
+.runtime {
+  color: #888;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Genres */
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.genre-tag {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.genre-tag:hover {
+  background: rgba(229, 9, 20, 0.2);
+  border-color: #e50914;
+}
+
+/* Overview */
+.overview-section {
+  margin-bottom: 2.5rem;
+}
+
+.overview-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.overview {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ccc;
+  text-align: justify;
+}
+
+/* Cast */
+.cast-section {
+  margin-bottom: 2.5rem;
+}
+
+.cast-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.cast-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.cast-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.actor-name {
+  display: block;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.character-name {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Director */
+.director-section {
+  margin-bottom: 2.5rem;
+}
+
+.director-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.director-name {
+  font-size: 1.1rem;
+  color: #ccc;
+  font-weight: 500;
+}
+
+/* Financial Info */
+.financial-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.financial-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.financial-item .label {
+  display: block;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.25rem;
+}
+
+.financial-item .value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .movie-details-grid {
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+  }
+  
+  .movie-poster-section {
+    position: static;
+  }
+  
+  .movie-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .movie-details-grid {
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+  }
+  
+  .movie-poster-section {
+    position: static;
+  }
+  
+  .movie-title {
+    font-size: 2.2rem;
+  }
+  
+  .movie-info-section {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-details-content {
+    padding-top: 80px;
+    padding-bottom: 2rem;
+  }
+  
+  .movie-details-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .movie-poster-section {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .movie-title {
+    font-size: 2rem;
+  }
+  
+  .movie-meta {
+    gap: 1rem;
+  }
+  
+  .rating-badge,
+  .release-year,
+  .runtime {
+    font-size: 1rem;
+  }
+  
+  .overview {
+    font-size: 1rem;
+  }
+  
+  .cast-list {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .financial-info {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-details-content {
+    padding-top: 60px;
+    padding-bottom: 1.5rem;
+  }
+  
+  .breadcrumb {
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .movie-details-grid {
+    gap: 1.5rem;
+  }
+  
+  .movie-poster-section {
+    max-width: 250px;
+  }
+  
+  .movie-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .movie-meta {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .rating-badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .genres {
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .genre-tag {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .overview-section,
+  .cast-section,
+  .director-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .overview-section h2,
+  .cast-section h2,
+  .director-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .cast-list {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .cast-item {
+    padding: 0.75rem;
+  }
+  
+  .financial-info {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .financial-item {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .movie-details-content {
+    padding-top: 50px;
+    padding-bottom: 1rem;
+  }
+  
+  .breadcrumb {
+    margin-bottom: 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .movie-details-grid {
+    gap: 1rem;
+  }
+  
+  .movie-poster-section {
+    max-width: 200px;
+  }
+  
+  .movie-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .movie-meta {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .rating-badge {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .genres {
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .genre-tag {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .overview-section,
+  .cast-section,
+  .director-section {
+    margin-bottom: 1rem;
+  }
+  
+  .overview-section h2,
+  .cast-section h2,
+  .director-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .overview {
+    font-size: 0.9rem;
+  }
+  
+  .cast-item {
+    padding: 0.5rem;
+  }
+  
+  .actor-name {
+    font-size: 0.9rem;
+  }
+  
+  .character-name {
+    font-size: 0.8rem;
+  }
+  
+  .financial-item {
+    padding: 0.5rem;
+  }
+  
+  .financial-item .label {
+    font-size: 0.8rem;
+  }
+  
+  .financial-item .value {
+    font-size: 1rem;
+  }
+}
