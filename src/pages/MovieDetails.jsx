@@ -1,24 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { fetchMovieDetails, getImageUrl, getImageUrlOriginal } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import './MovieDetails.css';
 
 const MovieDetails = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  useEffect(() => {
-    fetchMovieData();
-    checkFavoriteStatus();
-  }, [id]);
-
-  const fetchMovieData = async () => {
+  const fetchMovieData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -30,12 +24,17 @@ const MovieDetails = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
-  const checkFavoriteStatus = () => {
+  const checkFavoriteStatus = useCallback(() => {
     const favorites = JSON.parse(localStorage.getItem('favoriteMovies') || '[]');
     setIsFavorite(favorites.includes(id));
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchMovieData();
+    checkFavoriteStatus();
+  }, [fetchMovieData, checkFavoriteStatus]);
 
   const toggleFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem('favoriteMovies') || '[]');
@@ -120,9 +119,11 @@ const MovieDetails = () => {
     runtime,
     budget,
     revenue,
-    production_companies,
     credits,
   } = movie;
+
+  // Production companies data available but not used in current UI
+  // const productionCompanies = production_companies || [];
 
   const backdropUrl = getImageUrlOriginal(backdrop_path);
   const posterUrl = getImageUrl(poster_path);

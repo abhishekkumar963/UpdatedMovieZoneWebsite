@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { fetchGenres } from '../services/api';
@@ -6,14 +6,13 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [genres, setGenres] = useState([]);
   const [genresLoading, setGenresLoading] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   // Popular genre IDs (these are standard TMDB genre IDs)
-  const popularGenres = [
+  const popularGenres = useMemo(() => [
     { id: 28, name: 'Action' },
     { id: 12, name: 'Adventure' },
     { id: 35, name: 'Comedy' },
@@ -22,7 +21,7 @@ const Navbar = () => {
     { id: 878, name: 'Sci-Fi' },
     { id: 10749, name: 'Romance' },
     { id: 53, name: 'Thriller' },
-  ];
+  ], []);
 
   // Handle scroll effect
   useEffect(() => {
@@ -39,11 +38,10 @@ const Navbar = () => {
     const loadGenres = async () => {
       try {
         const genresData = await fetchGenres();
-        setGenres(genresData.genres);
+        // Genres loaded successfully but not used in UI
+        console.log('Genres loaded:', genresData.genres.length);
       } catch (error) {
         console.error('Failed to load genres:', error);
-        // Fallback to popular genres if API fails
-        setGenres(popularGenres);
       } finally {
         setGenresLoading(false);
       }

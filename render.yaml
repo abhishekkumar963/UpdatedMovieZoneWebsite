@@ -1,0 +1,25 @@
+services:
+  # A Static web service running on Nginx
+  - type: web
+    name: movie-zone
+    env: static
+    buildCommand: "npm ci && npm run build"
+    staticPublishPath: build
+    routes:
+      - route: /.*
+        # serve the index.html for all routes
+        directory: /
+        file: index.html
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CI
+        value: false
+      - key: REACT_APP_TMDB_API_KEY
+        sync: false
+        generateValue: true
+    headers:
+      - path: /static/**
+        headers:
+          - name: Cache-Control
+            value: public, max-age=31536000, immutable

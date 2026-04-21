@@ -70,9 +70,13 @@ const Home = () => {
     }
   };
 
-  const handleMovieClick = (movieId) => {
-    navigate(`/movie/${movieId}`);
-  };
+    // TODO: Add movie click handlers when needed
+  // const handleMovieClick = (movieId) => {
+  //   navigate(`/movie/${movieId}`);
+  // };
+  // const addMovieClickHandler = (movie) => {
+  //   return () => handleMovieClick(movie.id);
+  // };
 
   if (isSearchMode) {
     return (

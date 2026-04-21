@@ -42,11 +42,12 @@ const GenrePage = () => {
     }
   };
 
-  const handleRetry = () => {
-    if (genreId) {
-      fetchGenreMovies(genreId, 1);
-    }
-  };
+    // TODO: Add retry button UI when needed
+  // const handleRetry = () => {
+  //   if (genreId) {
+  //     fetchGenreMovies(genreId, 1);
+  //   }
+  // };
 
   const getGenreDisplayName = (name) => {
     return name ? name.charAt(0).toUpperCase() + name.slice(1) : 'Genre';
