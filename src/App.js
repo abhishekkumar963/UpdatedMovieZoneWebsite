@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ApiTest from './components/ApiTest';
 import Home from './pages/Home';
 import MovieDetails from './pages/MovieDetails';
 import GenrePage from './pages/GenrePage';
@@ -13,6 +14,7 @@ function App() {
       <div className="App">
         <Navbar />
         <main>
+          <ApiTest />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/movie/:id" element={<MovieDetails />} />
