@@ -3,6 +3,8 @@ services:
   - type: web
     name: movie-zone
     env: static
+    repo: https://github.com/abhishekkunar963/UpdatedMovieZoneWebsite.git
+    rootDir: ./
     buildCommand: "npm ci && npm run build"
     staticPublishPath: build
     routes:
