@@ -3,6 +3,11 @@ import axios from 'axios';
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
+// Validate API key
+if (!API_KEY) {
+  console.error('TMDB API key is missing! Please set REACT_APP_TMDB_API_KEY environment variable.');
+}
+
 // Image base URLs for different sizes
 export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 export const IMAGE_BASE_URL_ORIGINAL = 'https://image.tmdb.org/t/p/original';
